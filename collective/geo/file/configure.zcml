@@ -50,6 +50,22 @@
       handler="collective.geo.file.setuphandlers.add_extract_menue"
       profile="collective.geo.file:default" />
 
+  <genericsetup:upgradeStep
+      title="provide the IGisFile Interface"
+      description="Attach the IGisFile Interface to existing kml, kmz and gpx files"
+      source="1003"
+      destination="1004"
+      handler="collective.geo.file.setuphandlers.attach_igisfile"
+      profile="collective.geo.file:default" />
+
+  <genericsetup:upgradeStep
+      title="collective.geo.file register mimetypes"
+      description="Register mimetypes for gis files"
+      source="1003"
+      destination="1004"
+      handler="collective.geo.file.setuphandlers.add_mimetypes"
+      profile="collective.geo.file:default" />
+
 <!-- Event Subscribers -->
   <subscriber
     for="Products.ATContentTypes.interfaces.file.IATFile

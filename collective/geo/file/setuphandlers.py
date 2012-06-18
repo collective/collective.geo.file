@@ -1,4 +1,5 @@
 import logging
+from zope.app.component.hooks import getSite
 from zope.interface import alsoProvides
 from Products.CMFPlone.utils import getToolByName
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
@@ -6,7 +7,7 @@ from collective.geo.file.interfaces import IGisFile
 # The profile id of your package:
 PROFILE_ID = 'profile-collective.geo.file:default'
 
-gis_mimetypes = [
+GIS_MIMETYPES = [
     {'name': 'application/vnd.google-earth.kml+xml',
     'extensions': ('kml',),
     'globs': ('*.kml',),
@@ -40,15 +41,16 @@ def attach_igisfile(context, logger=None):
     if logger is None:
         # Called as upgrade step: define our own logger.
         logger = logging.getLogger('collective.geo.file')
-    logger.info('attaching IGisFile to KML and GPS Files')
-    site = context.getSite()
-    catalog = getToolByName(site, 'portal_catalog')
+    logger.info('attaching IGisFile to KML, KMZ and GPS Files')
+    portal = getSite()
+    catalog = getToolByName(portal, 'portal_catalog')
     brains = catalog(portal_type='File')
     reindex = False
     for brain in brains:
         ob = brain.getObject()
         mimetype = ob.content_type
         if mimetype in ['application/vnd.google-earth.kml+xml',
+                    'application/vnd.google-earth.kmz',
                     'application/gpx+xml']:
             if not IGisFile.providedBy(ob):
                 alsoProvides(ob, IGisFile)
@@ -69,12 +71,11 @@ def add_mimetypes(context, logger=None):
     if logger is None:
         # Called as upgrade step: define our own logger.
         logger = logging.getLogger('collective.geo.file')
-    site = context.getSite()
-
-    mimetypes_registry = getToolByName(site, 'mimetypes_registry')
+    portal = getSite()
+    mimetypes_registry = getToolByName(portal, 'mimetypes_registry')
     all_mimetypes = mimetypes_registry.list_mimetypes()
 
-    for mtype in gis_mimetypes:
+    for mtype in GIS_MIMETYPES:
         if mtype['name'] not in all_mimetypes:
             logger.info('Registering mimetype %s' % mtype['name'])
             mimetypes_registry.register(MimeTypeItem(**mtype))

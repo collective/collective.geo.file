@@ -90,6 +90,11 @@ class KMLFileMapLayer(MapLayer):
             format_str = u"""new OpenLayers.Format.KML({
                         extractStyles: true,
                         extractAttributes: true})"""
+        elif mimetype == 'application/vnd.google-earth.kmz':
+            format_str = u"""new OpenLayers.Format.KML({
+                        extractStyles: true,
+                        extractAttributes: true})"""
+            context_url += '@@filekmz_view.kml'
         elif mimetype == 'application/gpx+xml':
             format_str = u"""new OpenLayers.Format.GPX({
                                     extractWaypoints: true,
@@ -146,6 +151,7 @@ class KMLFileTopicMapLayers(MapLayers):
         for brain in self.context.queryCatalog(**query):
             object = brain.getObject()
             if object.content_type in ['application/vnd.google-earth.kml+xml',
+                                        'application/vnd.google-earth.kmz',
                                         'application/gpx+xml']:
                 layers.append(KMLFileMapLayer(self.context,object))
         if layers:

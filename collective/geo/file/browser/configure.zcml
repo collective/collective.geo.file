@@ -17,6 +17,16 @@
       />
 
 
+  <browser:page
+      for="collective.geo.file.interfaces.IGisFile"
+      name="filekmz_view.kml"
+      class=".filekmlview.KmzFileKmlView"
+      allowed_interface=".filekmlview.IKmzFileKmlView"
+      permission="zope2.View"
+      />
+
+
+
   <adapter
       for=".filekmlview.IFileKmlView
            zope.interface.Interface

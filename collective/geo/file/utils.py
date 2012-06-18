@@ -6,6 +6,7 @@ def set_mapview(context, event):
     mimetype = context.content_type
     reindex = False
     if mimetype in ['application/vnd.google-earth.kml+xml',
+                    'application/vnd.google-earth.kmz',
                     'application/gpx+xml']:
         if not IGisFile.providedBy(context):
             alsoProvides(context, IGisFile)
