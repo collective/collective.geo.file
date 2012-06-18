@@ -5,12 +5,14 @@ version = '0.4'
 
 setup(name='collective.geo.file',
       version=version,
-      description="An openlayers view for KML and GPX files",
+      description="An openlayers view for KML, KMZ and GPX files",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
+        "Framework :: Plone :: 4.0",
+        "Framework :: Plone :: 4.1",
         "Programming Language :: Python",
         "Topic :: Scientific/Engineering :: GIS",
         'License :: OSI Approved :: GNU General Public License (GPL)',

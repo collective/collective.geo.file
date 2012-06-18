@@ -1,10 +1,12 @@
 Changelog
 =========
 
-0.4 (unreleased)
+0.4 (2012/06/18)
 ----------------
 
 - Add KML File extraction [nan]
+- Add support for KMZ files [nan]
+
 
 0.3 (2011/06/14)
 -----------------
