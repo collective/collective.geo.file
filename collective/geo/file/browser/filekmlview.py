@@ -40,7 +40,7 @@ class KmzFileKmlView(BrowserView):
                 if zi.filename.endswith('.kml'):
                     tz = tmpzip.open(zi)
                     id = tz.name
-                    text = tz.read()
+                    text = tz.read().decode('utf-8', 'replace')
                     tz.close()
                     break
         tmp.close()
