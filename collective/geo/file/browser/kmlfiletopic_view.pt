@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="iwlearn.project">
+<body>
+  <metal:content-core fill-slot="content-core">
+    <metal:content-core define-macro="content-core">
+    <div id="content-core" tal:content="structure here/getText">
+     <tal:comment replace="nothing">Body Text</tal:comment>
+    </div>
+    <div id="kmlfiletopicmap">
+        <metal:use use-macro="context/@@collectivegeo-macros/openlayers" />
+        <metal:use use-macro="context/@@collectivegeo-macros/map-widget"  />
+        <script type="text/javascript"
+        src="++resource++geo.kml.javascripts/kml_openlayers.js"></script>
+    </div>
+ <div tal:replace="structure provider:collective.geo.file.javascript" />
+    </metal:content-core>
+  </metal:content-core>
+
+</body>
+</html>

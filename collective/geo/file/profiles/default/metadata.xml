@@ -1,0 +1,6 @@
+<metadata>
+ <version>1003</version>
+ <dependencies>
+  <dependency>profile-collective.geo.kml:default</dependency>
+ </dependencies>
+</metadata>

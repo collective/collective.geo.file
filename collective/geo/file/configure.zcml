@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="collective.geo.file">
+
+  <five:registerPackage package="." initialize=".initialize" />
+  <include package=".browser" />
+
+  <i18n:registerTranslations directory="locales" />
+
+  <!-- Register the installation GenericSetup extension profile -->
+  <genericsetup:registerProfile
+      name="default"
+      title="Collective Geo File"
+      directory="profiles/default"
+      description="A view to display KML Files"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep name="collective.geo.file.mimetypes"
+      title="collective.geo.file register mimetypes"
+      description="Register mimetypes for gis files"
+      handler="collective.geo.file.setuphandlers.import_various" />
+
+ <!-- Register the upgrade step -->
+  <genericsetup:upgradeStep
+      title="Empty ugrade step"
+      description=""
+      source="*"
+      destination="1002"
+      handler="collective.geo.file.setuphandlers.do_nothing"
+      profile="collective.geo.file:default" />
+
+  <genericsetup:upgradeStep
+      title="provide the IGisFile Interface"
+      description="Attach the IGisFile Interface to existing kml and gpx files"
+      source="1002"
+      destination="1003"
+      handler="collective.geo.file.setuphandlers.attach_igisfile"
+      profile="collective.geo.file:default" />
+
+  <genericsetup:upgradeStep
+      title="Add the extract menu"
+      description=""
+      source="1002"
+      destination="1003"
+      handler="collective.geo.file.setuphandlers.add_extract_menue"
+      profile="collective.geo.file:default" />
+
+<!-- Event Subscribers -->
+  <subscriber
+    for="Products.ATContentTypes.interfaces.file.IATFile
+         Products.Archetypes.interfaces.IObjectInitializedEvent"
+    handler=".utils.set_mapview"
+    />
+
+  <subscriber
+    for="Products.ATContentTypes.interfaces.IATFile
+         Products.Archetypes.interfaces.IObjectEditedEvent"
+    handler=".utils.set_mapview"
+    />
+
+</configure>

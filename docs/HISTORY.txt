@@ -1,0 +1,27 @@
+Changelog
+=========
+
+0.4 (unreleased)
+----------------
+
+- Add KML File extraction [nan]
+
+0.3 (2011/06/14)
+-----------------
+
+- Added support for Spanish localization [macagua]
+- Added improvements about the Internationalization [macagua]
+- zoom to the extent of the file data or if present the geo referenced coordinates
+- add view for GPX files
+
+0.2 (2011/05/20)
+----------------
+
+- remove i18n:registerTranslations directory
+
+
+
+0.1 (2011/05/11)
+-------------------
+
+- Initial release

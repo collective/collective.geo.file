@@ -1,0 +1,5 @@
+<layers>
+ <layer
+    name="collective.geo.file"
+    interface="collective.geo.file.interfaces.IGeoFileLayer" />
+</layers>

@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.geo.file">
+<head>
+    <metal:javascript_head fill-slot="javascript_head_slot">
+      <metal:use use-macro="context/@@collectivegeo-macros/openlayers" />
+    </metal:javascript_head>
+</head>
+<body>
+  <metal:content-core fill-slot="content-core">
+    <metal:content-core define-macro="content-core">
+        <div id="kmlfilemap">
+            <metal:use use-macro="context/@@collectivegeo-macros/map-widget"  />
+            <script type="text/javascript"
+                src="++resource++geo.kml.javascripts/kml_openlayers.js"></script>
+        </div>
+        <a tal:attributes="href here/absolute_url" i18n:translate=""> Download KML </a>
+<div tal:replace="structure provider:collective.geo.file.javascript" />
+
+    </metal:content-core>
+  </metal:content-core>
+</body>
+</html>
