@@ -42,15 +42,24 @@ class KMLMapLayer(MapLayer):
         # TODO: Replace OpenLayers.Layer.GML by OpenLayers.Layer.Vector, since
         # GML is deprecated in OpenLayers
         return u"""
-        function() { return new OpenLayers.Layer.GML('%s', '%s' + '@@kml-document',
-            { format: OpenLayers.Format.KML,
-              projection: cgmap.createDefaultOptions().displayProjection,
-              %s
-              formatOptions: {
-                  extractStyles: true,
-                  extractAttributes: true }
-            });}""" % (self.context.Title().replace("'", "&apos;"),
+        function() {
+                return new OpenLayers.Layer.Vector("%s", {
+                    protocol: new OpenLayers.Protocol.HTTP({
+                      url: "%s@@kml-document",
+                      format: new OpenLayers.Format.KML({
+                        extractStyles: true,
+                        extractAttributes: true}),
+                      }),
+                    strategies: [new OpenLayers.Strategy.Fixed()],
+                    visibility: true,
+                    %s
+                    projection: new OpenLayers.Projection("EPSG:4326")
+                  });
+                } """ % (self.context.Title().replace("'", "&apos;"),
                         context_url, load_end)
+
+
+
 
 
 class KMLFileMapLayer(MapLayer):
