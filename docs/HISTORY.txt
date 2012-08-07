@@ -1,6 +1,16 @@
 Changelog
 =========
 
+0.5 (unreleased)
+-----------------
+
+- removed unused viewlet and manager, with the changes in c.g.kml to
+vectorlayers this is not used anymore
+- remove extractgeometries, this now lives in c.g.xmlimport
+- no more dependency on shapely
+
+
+
 0.4 (2012/06/18)
 ----------------
 

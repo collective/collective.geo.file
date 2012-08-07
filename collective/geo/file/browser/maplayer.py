@@ -3,6 +3,7 @@ from collective.geo.mapwidget.browser.widget import MapLayers
 from collective.geo.mapwidget.maplayers import MapLayer
 from collective.geo.contentlocations.interfaces import IGeoManager
 from collective.geo.file.interfaces import IGisFile
+from collective.geo.file.config import MIMETYPES
 
 
 def is_georeferenced(context):
@@ -39,8 +40,7 @@ class KMLMapLayer(MapLayer):
             """
         else:
             load_end = ""
-        # TODO: Replace OpenLayers.Layer.GML by OpenLayers.Layer.Vector, since
-        # GML is deprecated in OpenLayers
+
         return u"""
         function() {
                 return new OpenLayers.Layer.Vector("%s", {
@@ -64,7 +64,7 @@ class KMLMapLayer(MapLayer):
 
 class KMLFileMapLayer(MapLayer):
     """
-    a layer for a KML/GPX File.
+    a layer for a KML/KMZ/GPX File.
     """
 
     def __init__(self, context, kmlfile, zoom_here=False):
@@ -159,9 +159,7 @@ class KMLFileTopicMapLayers(MapLayers):
         query = {'object_provides': IGisFile.__identifier__}
         for brain in self.context.queryCatalog(**query):
             object = brain.getObject()
-            if object.content_type in ['application/vnd.google-earth.kml+xml',
-                                        'application/vnd.google-earth.kmz',
-                                        'application/gpx+xml']:
+            if object.content_type in MIMETYPES:
                 layers.append(KMLFileMapLayer(self.context,object))
         if layers:
             layers[-1].zoom_here = True

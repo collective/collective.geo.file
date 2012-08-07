@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.4'
+version = '0.5'
 
 setup(name='collective.geo.file',
       version=version,
@@ -13,11 +13,12 @@ setup(name='collective.geo.file',
         "Framework :: Plone",
         "Framework :: Plone :: 4.0",
         "Framework :: Plone :: 4.1",
+        "Framework :: Plone :: 4.2",
         "Programming Language :: Python",
         "Topic :: Scientific/Engineering :: GIS",
         'License :: OSI Approved :: GNU General Public License (GPL)',
         ],
-      keywords='',
+      keywords='GIS KML KMZ Openlayers GPX',
       author='Christian Ledermann',
       author_email='christian.ledermann@gmail.com',
       url='http://plone.org/products/collective.geo.file/',

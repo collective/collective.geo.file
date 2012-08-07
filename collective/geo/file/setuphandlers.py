@@ -7,6 +7,8 @@ from collective.geo.file.interfaces import IGisFile
 # The profile id of your package:
 PROFILE_ID = 'profile-collective.geo.file:default'
 
+from config import MIMETYPES
+
 GIS_MIMETYPES = [
     {'name': 'application/vnd.google-earth.kml+xml',
     'extensions': ('kml',),
@@ -49,9 +51,7 @@ def attach_igisfile(context, logger=None):
     for brain in brains:
         ob = brain.getObject()
         mimetype = ob.content_type
-        if mimetype in ['application/vnd.google-earth.kml+xml',
-                    'application/vnd.google-earth.kmz',
-                    'application/gpx+xml']:
+        if mimetype in MIMETYPES:
             if not IGisFile.providedBy(ob):
                 alsoProvides(ob, IGisFile)
                 reindex = True

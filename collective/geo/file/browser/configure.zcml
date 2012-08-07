@@ -36,8 +36,6 @@
       />
 
 
-
-
   <browser:menuItem
       title="Map view"
       for="collective.geo.file.interfaces.IGisFile"
@@ -46,11 +44,6 @@
       description="Set Map as default view."
       />
 
-<browser:page
-      name="extract-coordinates.html"
-      for="collective.geo.file.interfaces.IGisFile"
-      class=".extractgeometry.ExtractGeometry"
-      permission = "cmf.ModifyPortalContent" />
 
   <browser:page
       for="Products.ATContentTypes.interfaces.topic.IATTopic"
@@ -79,20 +72,6 @@
       />
 
 
-    <browser:viewletManager
-        name="collective.geo.file.javascript"
-        provides="..interfaces.ICollectiveGeoFileJs"
-        permission="zope2.View"
-        class="plone.app.viewletmanager.manager.OrderedViewletManager"
-        />
-
-    <browser:viewlet
-        name="collective.geo.file.js"
-        manager="..interfaces.ICollectiveGeoFileJs"
-        layer="..interfaces.IGeoFileLayer"
-        permission="zope2.View"
-        template="filejs.pt"
-        />
 
 
 </configure>
