@@ -11,10 +11,10 @@ Introduction
 
     When you upload a file with the
     correct mimetype 'application/vnd.google-earth.kml+xml' (i.e with
-    the extension *.kml), application/vnd.google-earth.kmz' (extension
-    *.kmz)
+    the extension `*.kml`), application/vnd.google-earth.kmz' (extension
+    `*.kmz`)
     or 'application/gpx+xml' (i.e. with the extension
-    *.gpx) the map view will be applied by default.
+    `*.gpx`) the map view will be applied by default.
 
     For Collections an additional view is added that displays all KML, KMZ
     and GPX files
