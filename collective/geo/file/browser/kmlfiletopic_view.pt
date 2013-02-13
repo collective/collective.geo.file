@@ -14,8 +14,6 @@
         <script type="text/javascript"
         src="++resource++geo.kml.javascripts/kml_openlayers.js"></script>
     </div>
-    <script type="text/javascript"
-        src="++resource++geo.kml.javascripts/kml_openlayers.js"></script>
     </metal:content-core>
   </metal:content-core>
 

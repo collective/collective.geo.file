@@ -40,7 +40,8 @@ class KMLMapLayer(MapLayer):
             """
         else:
             load_end = ""
-
+        #XXX FIXME
+        load_end = ""
         return u"""
         function() {
                 return new OpenLayers.Layer.Vector("%s", {
@@ -93,7 +94,7 @@ class KMLFileMapLayer(MapLayer):
             load_end = ""
 
         #XXX we have to find smthng better for this
-        load_end = u''
+        #load_end = u''
 
         if mimetype == 'application/vnd.google-earth.kml+xml':
             format_str = u"""new OpenLayers.Format.KML({
@@ -142,7 +143,7 @@ class KMLFileMapLayers(MapLayers):
         layers = super(KMLFileMapLayers, self).layers()
         if is_georeferenced(self.context):
             layers.append(KMLMapLayer(self.context))
-        layers.append(KMLFileMapLayer(self.context,self.context))
+        layers.append(KMLFileMapLayer(self.context,self.context, zoom_here=True))
         return layers
 
 class KMLFileTopicMapLayers(MapLayers):
