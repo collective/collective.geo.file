@@ -1,25 +1,25 @@
 Introduction
 ============
 
-    collective.geo.file provides a view for KML, KMZ (Keyhole Markup Language)
-    and GPX (GPS eXchange Format) files.
-    The view renders the file in a openlayers Map using the collective.geo
-    library.
+collective.geo.file provides a view for KML, KMZ (Keyhole Markup Language)
+and GPX (GPS eXchange Format) files.
+The view renders the file in a openlayers Map using the collective.geo
+library.
 
-    The product does not introduce a content type but adds an additional
-    view to the Archetypes file and collection type.
+The product does not introduce a content type but adds an additional
+view to the Archetypes file and collection type.
 
-    When you upload a file with the
-    correct mimetype 'application/vnd.google-earth.kml+xml' (i.e with
-    the extension `*.kml`), application/vnd.google-earth.kmz' (extension
-    `*.kmz`)
-    or 'application/gpx+xml' (i.e. with the extension
-    `*.gpx`) the map view will be applied by default.
+When you upload a file with the
+correct mimetype 'application/vnd.google-earth.kml+xml' (i.e with
+the extension `*.kml`), 'application/vnd.google-earth.kmz' (extension
+`*.kmz`)
+or 'application/gpx+xml' (i.e. with the extension
+`*.gpx`) the map view will be applied by default.
 
-    For Collections an additional view is added that displays all KML, KMZ
-    and GPX files
-    returned by the query as a layer. Choose 'KML File Map View' from the
-    display menue of the topic.
+For Collections an additional view is added that displays all KML, KMZ
+and GPX files
+returned by the query as a layer. Choose 'KML File Map View' from the
+display menue of the topic.
 
 
 

@@ -6,6 +6,7 @@
 
   <include package="plone.app.contentmenu" />
   <include package="Products.CMFCore" file="permissions.zcml" />
+  <include package="z3c.caching" file="meta.zcml" />
 
   <browser:page
       for="collective.geo.file.interfaces.IGisFile"
@@ -16,6 +17,10 @@
       permission="zope2.View"
       />
 
+  <cache:ruleset
+      for=".filekmlview.FileKmlView"
+      ruleset="plone.content.itemView"
+      />
 
   <browser:page
       for="collective.geo.file.interfaces.IGisFile"
@@ -25,7 +30,10 @@
       permission="zope2.View"
       />
 
-
+  <cache:ruleset
+      for=".filekmlview.KmzFileKmlView"
+      ruleset="plone.content.file"
+      />
 
   <adapter
       for=".filekmlview.IFileKmlView
@@ -54,6 +62,10 @@
       template="kmlfiletopic_view.pt"
       />
 
+  <cache:ruleset
+      for=".filekmlview.TopicFileKmlView"
+      ruleset="plone.content.folderView"
+      />
 
   <adapter
       for=".filekmlview.ITopicFileKmlView
