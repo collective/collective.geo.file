@@ -2,6 +2,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:cache="http://namespaces.zope.org/cache"
     i18n_domain="iwlearn.project">
 
   <include package="plone.app.contentmenu" />
@@ -73,6 +74,11 @@
            zope.interface.Interface
            zope.interface.Interface"
       factory=".maplayer.KMLFileTopicMapLayers"
+      />
+
+  <cache:ruleset
+      for=".filekmlview.TopicFileKmlView"
+      ruleset="plone.content.folderView"
       />
 
   <browser:menuItem
