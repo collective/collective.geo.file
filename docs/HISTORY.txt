@@ -6,6 +6,7 @@ Changelog
 
 - override the adapter from collective.geo.kml.browser for maplayers
 - add support for folders and new style collections
+- remove the kmlfiletopic_view view
 
 0.5 (2013/02/13)
 -----------------
