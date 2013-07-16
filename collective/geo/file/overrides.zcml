@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:cache="http://namespaces.zope.org/cache"
+    i18n_domain="collective.geo.file">
+
+
+  <adapter
+      for="collective.geo.kml.interfaces.IKMLOpenLayersView
+           zope.interface.Interface
+           zope.interface.Interface
+           zope.interface.Interface"
+      factory=".browser.maplayer.KMLFileTopicMapLayers"
+      />
+
+
+</configure>

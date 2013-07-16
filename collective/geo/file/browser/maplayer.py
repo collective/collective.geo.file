@@ -1,10 +1,20 @@
 #
+import logging
+
+from Products.CMFCore.utils import getToolByName
 from collective.geo.mapwidget.browser.widget import MapLayers
 from collective.geo.mapwidget.maplayers import MapLayer
+from collective.geo.kml.browser.kmlopenlayersview import KMLMapLayers
 from collective.geo.contentlocations.interfaces import IGeoManager
 from collective.geo.file.interfaces import IGisFile
 from collective.geo.file.config import MIMETYPES
 
+try:
+    from plone.app.querystring import queryparser
+except ImportError:
+    pass
+
+logger = logging.getLogger('collective.geo.file')
 
 def is_georeferenced(context):
     try:
@@ -16,51 +26,6 @@ def is_georeferenced(context):
         # catch TypeError: ('Could not adapt', <ATFile ...>, <Interfa...oManager>)
         pass
     return False
-
-class KMLMapLayer(MapLayer):
-    """
-    a layer for one level sub objects.
-    """
-
-    def __init__(self, context):
-        self.context = context
-
-    @property
-    def jsfactory(self):
-        context_url = self.context.absolute_url()
-        if not context_url.endswith('/'):
-            context_url += '/'
-        if is_georeferenced(self.context):
-            load_end = u"""
-              eventListeners: { 'loadend': function(event) {
-                                 var extent = this.getDataExtent()
-                                 this.map.zoomToExtent(extent);
-                                }
-                            },
-            """
-        else:
-            load_end = ""
-        #XXX FIXME
-        load_end = ""
-        return u"""
-        function() {
-                return new OpenLayers.Layer.Vector("%s", {
-                    protocol: new OpenLayers.Protocol.HTTP({
-                      url: "%s@@kml-document",
-                      format: new OpenLayers.Format.KML({
-                        extractStyles: true,
-                        extractAttributes: true}),
-                      }),
-                    strategies: [new OpenLayers.Strategy.Fixed()],
-                    visibility: true,
-                    %s
-                    projection: new OpenLayers.Projection("EPSG:4326")
-                  });
-                } """ % (self.context.Title().replace("'", "&apos;"),
-                        context_url, load_end)
-
-
-
 
 
 class KMLFileMapLayer(MapLayer):
@@ -92,7 +57,6 @@ class KMLFileMapLayer(MapLayer):
             """
         else:
             load_end = ""
-
         #XXX we have to find smthng better for this
         #load_end = u''
 
@@ -132,7 +96,7 @@ class KMLFileMapLayer(MapLayer):
 
 
 
-class KMLFileMapLayers(MapLayers):
+class KMLFileMapLayers(KMLMapLayers):
     '''
     create all layers for this view.
     the file itself as a layer +
@@ -141,27 +105,41 @@ class KMLFileMapLayers(MapLayers):
 
     def layers(self):
         layers = super(KMLFileMapLayers, self).layers()
-        if is_georeferenced(self.context):
-            layers.append(KMLMapLayer(self.context))
         layers.append(KMLFileMapLayer(self.context,self.context, zoom_here=True))
         return layers
 
-class KMLFileTopicMapLayers(MapLayers):
+class KMLFileTopicMapLayers(KMLMapLayers):
     '''
     create all layers for this view.
     the layer defined by the annotations +
     all kml files as layers
     '''
-
+    @property
+    def portal_catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
 
     def layers(self):
         layers = super(KMLFileTopicMapLayers, self).layers()
-        layers.append(KMLMapLayer(self.context))
+        lcount = len(layers)
         query = {'object_provides': IGisFile.__identifier__}
-        for brain in self.context.queryCatalog(**query):
+        #XXX
+        if self.context.portal_type == 'Folder':
+            brains = self.context.getFolderContents(contentFilter=query)
+        elif self.context.portal_type == 'Collection':
+            query.update(queryparser.parseFormquery(
+                self.context, self.context.getRawQuery()))
+            brains=self.portal_catalog(**query)
+        elif self.context.portal_type == 'Topic':
+            query.update(self.context.buildQuery())
+            brains=self.portal_catalog(**query)
+        else:
+            brains = []
+            logger.error('cannot get query for current object')
+        for brain in brains:
             object = brain.getObject()
             if object.content_type in MIMETYPES:
-                layers.append(KMLFileMapLayer(self.context,object))
-        if layers:
+                layers.append(KMLFileMapLayer(self.context,
+                                object, zoom_here=False))
+        if len(layers) > lcount:
             layers[-1].zoom_here = True
         return layers

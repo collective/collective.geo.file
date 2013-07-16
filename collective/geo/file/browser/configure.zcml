@@ -3,7 +3,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:cache="http://namespaces.zope.org/cache"
-    i18n_domain="iwlearn.project">
+    i18n_domain="collective.geo.file">
 
   <include package="plone.app.contentmenu" />
   <include package="Products.CMFCore" file="permissions.zcml" />
@@ -52,44 +52,6 @@
       action="filekml_view"
       description="Set Map as default view."
       />
-
-
-  <browser:page
-      for="Products.ATContentTypes.interfaces.topic.IATTopic"
-      name="kmlfiletopic_view"
-      class=".filekmlview.TopicFileKmlView"
-      allowed_interface=".filekmlview.ITopicFileKmlView"
-      permission="zope2.View"
-      template="kmlfiletopic_view.pt"
-      />
-
-  <cache:ruleset
-      for=".filekmlview.TopicFileKmlView"
-      ruleset="plone.content.folderView"
-      />
-
-  <adapter
-      for=".filekmlview.ITopicFileKmlView
-           zope.interface.Interface
-           zope.interface.Interface
-           zope.interface.Interface"
-      factory=".maplayer.KMLFileTopicMapLayers"
-      />
-
-  <cache:ruleset
-      for=".filekmlview.TopicFileKmlView"
-      ruleset="plone.content.folderView"
-      />
-
-  <browser:menuItem
-      title="File Map View"
-      for="Products.ATContentTypes.interface.IATTopic"
-      menu="plone_displayviews"
-      action="kmlfiletopic_view"
-      description="Display KML and GPX Files as layers"
-      />
-
-
 
 
 </configure>
