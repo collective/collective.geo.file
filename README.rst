@@ -16,7 +16,7 @@ the extension `*.kml`), 'application/vnd.google-earth.kmz' (extension
 or 'application/gpx+xml' (i.e. with the extension
 `*.gpx`) the map view will be applied by default.
 
-KML, KMZ and GPX files are displayed in the `KML Openlayers View' of
+KML, KMZ and GPX files are displayed in the `KML Openlayers View` of
 collections and Folders
 
 
