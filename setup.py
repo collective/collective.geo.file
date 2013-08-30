@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.5'
+version = '0.6'
 
 setup(name='collective.geo.file',
       version=version,
@@ -14,6 +14,7 @@ setup(name='collective.geo.file',
         "Framework :: Plone :: 4.0",
         "Framework :: Plone :: 4.1",
         "Framework :: Plone :: 4.2",
+        "Framework :: Plone :: 4.3",
         "Programming Language :: Python",
         "Topic :: Scientific/Engineering :: GIS",
         'License :: OSI Approved :: GNU General Public License (GPL)',

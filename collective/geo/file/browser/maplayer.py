@@ -59,7 +59,7 @@ class KMLFileMapLayer(MapLayer):
             load_end = ""
         #XXX we have to find smthng better for this
         #load_end = u''
-
+        style_str =u''
         if mimetype == 'application/vnd.google-earth.kml+xml':
             format_str = u"""new OpenLayers.Format.KML({
                         extractStyles: true,
@@ -74,6 +74,7 @@ class KMLFileMapLayer(MapLayer):
                                     extractWaypoints: true,
                                     extractRoutes: true,
                                     extractAttributes: true})"""
+            #style_str ='style: {strokeColor: "green", strokeWidth: 2, strokeOpacity: 0.5},'
         if format_str:
             layer_str = u"""function() {
                 return new OpenLayers.Layer.Vector("%s", {
@@ -83,10 +84,11 @@ class KMLFileMapLayer(MapLayer):
                       }),
                     strategies: [new OpenLayers.Strategy.Fixed()],
                     %s
+                    %s
                     projection: new OpenLayers.Projection("EPSG:4326")
                   });
                 }""" % (self.kmlfile.Title().replace("'", "&apos;"),
-                            context_url, format_str, load_end)
+                            context_url, format_str, style_str, load_end)
         else:
             layer_str = ''
         return layer_str

@@ -1,12 +1,13 @@
 Changelog
 =========
 
-0.6 (unreleased)
+0.6 (2013/08/30)
 ----------------
 
 - override the adapter from collective.geo.kml.browser for maplayers
 - add support for folders and new style collections
 - remove the kmlfiletopic_view view
+- add caching rules
 
 0.5 (2013/02/13)
 -----------------
@@ -15,14 +16,11 @@ Changelog
 - remove extractgeometries, this now lives in c.g.xmlimport
 - no more dependency on shapely
 
-
-
 0.4 (2012/06/18)
 ----------------
 
 - Add KML File extraction [nan]
 - Add support for KMZ files [nan]
-
 
 0.3 (2011/06/14)
 -----------------
@@ -36,7 +34,6 @@ Changelog
 ----------------
 
 - remove i18n:registerTranslations directory
-
 
 
 0.1 (2011/05/11)
