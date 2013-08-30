@@ -26,8 +26,8 @@ collections and Folders
 Known Issues
 ============
 
-    If you assign coordinates to the file with the IGeoreferenceable Interface
-    you have to set the viewletmanager to 'Do not display map' otherwise
-    it will _REALLY_ screw up your view. The coordinates assigned there
-    will display as the first layer on the 'Map View' of the file and
-    they will display in the 'KML File Map View' of a topic.
+If you assign coordinates to the file with the IGeoreferenceable Interface
+you have to set the viewletmanager to 'Do not display map' otherwise
+it will **REALLY** screw up your view. The coordinates assigned there
+will display as the first layer on the 'Map View' of the file and
+they will display in the 'KML File Map View' of a topic.
