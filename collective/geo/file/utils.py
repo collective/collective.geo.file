@@ -17,9 +17,9 @@ def set_mapview(context, event):
         if IGisFile.providedBy(context):
             noLongerProvides(context, IGisFile)
             reindex = True
-        # reset to default view
-        context.setLayout(context.getDefaultLayout())
-
+        # reset to default view only if the current view is filekml_view
+        if context.getLayout() == 'filekml_view':
+            context.setLayout(context.getDefaultLayout())
     # we need to reindex the object, because ObjectEditedEvent is fired
     # after reindexing
     if reindex:
