@@ -4,6 +4,8 @@ Changelog
 0.7 (unreleased)
 -----------------
 
+- Add Transifex.net service integration to manage the translation process.
+  [macagua]
 - Updated Spanish translation
   [macagua]
 - Updated i18n support

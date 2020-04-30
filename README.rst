@@ -20,7 +20,16 @@ KML, KMZ and GPX files are displayed in the `KML Openlayers View` of
 collections and Folders
 
 
+Translations
+============
 
+This product has been translated into
+
+- Spanish.
+
+You can contribute for any message missing or other new languages, join us at 
+`Plone Collective Team <https://www.transifex.com/plone/plone-collective/>`_ 
+into *Transifex.net* service with all world Plone translators community.
 
 
 Known Issues
