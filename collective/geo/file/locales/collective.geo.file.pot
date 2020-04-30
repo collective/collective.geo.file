@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-06-23 18:37+0000\n"
+"POT-Creation-Date: 2020-04-30 08:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,22 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.geo.file\n"
 
-#: ./browser/filekmlview.pt:18
-msgid "Download KML"
+#: ../configure.zcml:21
+msgid "A view to display KML Files"
 msgstr ""
 
+#: ../configure.zcml:21
+msgid "Collective Geo File"
+msgstr ""
+
+#: ../browser/filekmlview.pt:18
+msgid "Download"
+msgstr ""
+
+#: ../browser/configure.zcml:54
+msgid "Map view"
+msgstr ""
+
+#: ../browser/configure.zcml:54
+msgid "Set Map as default view."
+msgstr ""
